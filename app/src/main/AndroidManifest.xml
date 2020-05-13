@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.tqi.jheimesilveira.app">
+    package="br.com.jheimesilveira.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".ui.MovieApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,7 +16,7 @@
             android:name=".ui.movie.MovieActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_movie"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.list_movie.ListMovieActivity"
             android:configChanges="orientation|screenSize">

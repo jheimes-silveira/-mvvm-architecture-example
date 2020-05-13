@@ -12,16 +12,31 @@ ext.versionClassifier = null
 ext.isSnapshot = false
 ext.minimumSdkVersion = 21
 
+ext {
+    koin_version = "2.1.5"
+}
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "br.com.tqi.jheimesilveira.app"
+        applicationId "br.com.jheimesilveira.app"
         targetSdkVersion 29
         minSdkVersion project.ext.minimumSdkVersion
         versionCode generateVersionCode() // 190010203
         versionName generateVersionName() // 1.2.3-SNAPSHOT
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
     }
 
     buildTypes {
@@ -41,11 +56,25 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6"
     implementation "androidx.appcompat:appcompat:1.1.0"
-    implementation "androidx.core:core-ktx:1.1.0"
+    implementation "androidx.core:core-ktx:1.2.0"
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"
 
-    // lifecycle padão MVVM
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+
+    // Koin AndroidX ViewModel features
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    // Koin AndroidX Fragment features
+    implementation "org.koin:koin-androidx-fragment:$koin_version"
+
+    // Koin AndroidX Experimental features
+    implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    // lifecycle default MVVM
     implementation "android.arch.lifecycle:extensions:1.1.1"
 
     // Google Gson
@@ -53,20 +82,20 @@ dependencies {
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.6.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.5.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.0"
 
     // Interceptor
-    implementation "com.squareup.okhttp3:logging-interceptor:3.8.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.4.1"
 
     // Google Material
-    implementation "com.google.android.material:material:1.2.0-alpha01"
+    implementation "com.google.android.material:material:1.2.0-alpha06"
 
     // Animações
-    implementation "com.airbnb.android:lottie:2.8.0"
+    implementation "com.airbnb.android:lottie:3.0.7"
 
     // Carregar Imagens
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     // Testes
     testImplementation "junit:junit:4.12"
